@@ -1,6 +1,6 @@
 # Seba
-Trying to move my Personal project about poisonous mushrooms (using Convultional Neural Networks) in Oslo to Android 
-mobile app using Kivy. 
+Trying to move my Personal project about predicting poisonous mushrooms (using Convultional Neural Networks) in Oslo to 
+Android  mobile app using Kivy. 
 
 [Link to the Project](https://github.com/sebalp1987/mushroom_identify)
 
