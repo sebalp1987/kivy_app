@@ -1,0 +1,90 @@
+WindowManager:
+    MainWindow:
+
+    SecondWindow:
+
+<Button>:
+    font_size: 10
+    color : 0.,0.,0.,0.5
+
+
+<MainWindow>:
+    name: "main"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'source/background.jpg'
+
+        Color:
+            rgba: 0.6, 1, 0.7, 0.6
+        Rectangle:
+            pos: (0, 1)
+            size: self.width, 70
+        Color:
+            rgba: 1, 1, 1, 1
+
+        Rectangle:
+            pos: (0, 500)
+            size: self.width, 70
+            Label:
+                text: "Welcome"
+                color: 0, 0, 0, 1
+                size: (300, 300)
+
+
+
+
+
+    FloatLayout:
+        cols:2
+
+        Button:
+            id: "upload"
+            size_hint: 0.2, 0.1
+            pos_hint : {'x' : 0 , 'y' : 0}
+
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+            Image:
+                source: 'source/upload.png'
+                stretch: True
+                size: self.parent.size
+                pos: self.parent.pos
+
+        Button:
+            id: "picture"
+            size_hint: 0.2, 0.1
+            pos_hint : {'x' : 0.8 , 'y' : 0}
+            on_release:
+                app.root.current = "second"
+                root.manager.transition.direction = "left"
+            Image:
+                source: 'source/picture.png'
+                stretch: True
+                size: self.parent.size
+                pos: self.parent.pos
+
+
+
+<SecondWindow>:
+    name: "second"
+    GridLayout:
+        cols: 2
+        Button:
+            text: "Go Back"
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+
+        Button:
+            text: "Press"
+            on_release: root.btn()
+
+<Pop>:
+    Label:
+        text: "You pressed the button"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":0.1}
