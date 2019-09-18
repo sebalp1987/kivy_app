@@ -4,6 +4,7 @@ Android  mobile app using Kivy.
 
 [Link to the Project](https://github.com/sebalp1987/mushroom_identify)
 
+![Drag Image](source/presentation.png)
 
 ## [Unreleased]
 ### Added
