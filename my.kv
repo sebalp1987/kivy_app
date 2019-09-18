@@ -5,7 +5,8 @@ WindowManager:
 
 <Button>:
     font_size: 10
-    color : 0.,0.,0.,0.5
+    background_color : (1,1,1,0) if self.state == 'normal' else (0,0,0,0.7)
+
 
 
 <MainWindow>:
@@ -18,7 +19,7 @@ WindowManager:
             source: 'source/background.jpg'
 
         Color:
-            rgba: 0.6, 1, 0.7, 0.6
+            rgba: 1, 1, 1, 0.7
         Rectangle:
             pos: (0, 1)
             size: self.width, 70
@@ -26,7 +27,7 @@ WindowManager:
             rgba: 1, 1, 1, 1
 
         Rectangle:
-            pos: (0, 500)
+            pos: (0, 550)
             size: self.width, 70
             Label:
                 text: "Welcome"
@@ -40,7 +41,8 @@ WindowManager:
         Button:
             id: "upload"
             size_hint: 0.2, 0.1
-            pos_hint : {'x' : 0 , 'y' : 0}
+            pos_hint : {'x' : 0.1 , 'y' : 0.005}
+            center: self.parent.center
 
             on_release:
                 app.root.current = "second"
@@ -54,7 +56,8 @@ WindowManager:
         Button:
             id: "picture"
             size_hint: 0.2, 0.1
-            pos_hint : {'x' : 0.8 , 'y' : 0}
+            pos_hint : {'x' : 0.7 , 'y' : 0.005}
+            center: self.parent.center
             on_release:
                 app.root.current = "second"
                 root.manager.transition.direction = "left"
