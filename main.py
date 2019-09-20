@@ -12,6 +12,7 @@ from PIL import Image as ImagePil
 import threading
 
 
+
 class MainWindow(Screen):
     pass
 
@@ -27,7 +28,16 @@ class SecondWindow(Screen):
 
 
 class ThirdWindow(Screen):
-    pass
+    def capture(self):
+        camera = self.ids['camera']
+        camera.export_to_png('./source/image_pred.jpg')
+
+    def btn(self):
+        pbar = ProgressBar(value=25, max=100)
+        popup = Popup(content=pbar, title='Calculating...')
+        popup.open()
+        threading.Thread(target=select_to(['./source/image_pred.jpg'])).start()
+        popup.dismiss()
 
 
 class WindowManager(ScreenManager):
@@ -39,11 +49,15 @@ class Pop(FloatLayout):
 
 
 def select_to(*args):
-    print(args[1][0])
-    prediction, danger, info = predict_msh.predict_output(args[1][0])
+    try:
+        prediction, danger, info = predict_msh.predict_output(args[1][0])
+        iw = ImagePil.open(args[1][0])
+        iw.save('./source/image_pred.jpg')
+    except IndexError:
+        prediction, danger, info = predict_msh.predict_output(args[0][0])
     print(prediction)
-    iw = ImagePil.open(args[1][0])
-    iw.save('./source/image_pred.jpg')
+
+
 
     show = Pop()
 
@@ -63,12 +77,6 @@ kv = Builder.load_file("my.kv")
 
 
 class MyMainApp(App):
-
-    def classify_image(self):
-        img_path = self.root.ids["img"].source
-        prediction = predict_msh.predict_output(img_path)
-        print(prediction)
-        # self.root.ids["label"].text = prediction
 
     def build(self):
         return kv

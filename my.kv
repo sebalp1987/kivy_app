@@ -6,7 +6,7 @@ WindowManager:
     ThirdWindow:
 
 <Button>:
-    font_size: 10
+    font_size: 20
     background_color : (1,1,1,0) if self.state == 'normal' else (0,0,0,0.7)
 
 
@@ -104,15 +104,35 @@ WindowManager:
 
 <ThirdWindow>:
     name: "third"
-    GridLayout:
-        cols: 2
+    BoxLayout:
+        orientation: 'vertical'
+        Camera:
+            id: camera
+            resolution: (640, 480)
+            play: True
+        ToggleButton:
+            text: 'Capture'
+            background_color : (1,1,1,1)
+            on_press:
+                root.capture()
+                analyze.disabled = not analyze.disabled
+                camera.play = not camera.play
+            size_hint_y: None
+            height: '48dp'
         Button:
-            text: "Go Back"
+            id: analyze
+            text: 'Analyze'
+            size_hint_y: None
+            height: '48dp'
+            disabled: True
+            background_color : (1,1,1,1)
+            on_press: root.btn()
+        Button:
+            text: 'Back'
+            size_hint_y: None
+            height: '48dp'
+            background_color : (1,1,1,1)
             on_release:
                 app.root.current = "main"
                 root.manager.transition.direction = "right"
-
-        Button:
-            text: "Press"
-            on_release: root.btn()
 
