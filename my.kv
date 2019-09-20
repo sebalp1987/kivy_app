@@ -3,6 +3,8 @@ WindowManager:
 
     SecondWindow:
 
+    ThirdWindow:
+
 <Button>:
     font_size: 10
     background_color : (1,1,1,0) if self.state == 'normal' else (0,0,0,0.7)
@@ -11,6 +13,7 @@ WindowManager:
 
 <MainWindow>:
     name: "main"
+
 
     canvas.before:
         Rectangle:
@@ -29,10 +32,8 @@ WindowManager:
         Rectangle:
             pos: (0, 550)
             size: self.width, 70
-            Label:
-                text: "Welcome"
-                color: 0, 0, 0, 1
-                size: (300, 300)
+
+
 
 
     FloatLayout:
@@ -59,7 +60,7 @@ WindowManager:
             pos_hint : {'x' : 0.7 , 'y' : 0.005}
             center: self.parent.center
             on_release:
-                app.root.current = "second"
+                app.root.current = "third"
                 root.manager.transition.direction = "left"
             Image:
                 source: 'source/picture.png'
@@ -71,6 +72,38 @@ WindowManager:
 
 <SecondWindow>:
     name: "second"
+    FileChooserIconView:
+        canvas.before:
+            Color:
+                rgb: 0.5, 0.4, 0.5
+            Rectangle:
+                pos: self.pos
+                size: self.size
+            Color:
+                rgba: 1, 1, 1, 0.7
+            Rectangle:
+                pos: (0, 1)
+                size: self.width, 70
+        on_selection: root.btn(*args)
+
+
+
+        Button:
+            id: "picture"
+            size_hint: 0.2, 0.1
+            pos_hint : {'x' : 0.7 , 'y' : 0.005}
+            center: self.parent.center
+            on_release:
+                app.root.current = "main"
+                root.manager.transition.direction = "right"
+            Image:
+                source: 'source/back.png'
+                stretch: True
+                size: self.parent.size
+                pos: self.parent.pos
+
+<ThirdWindow>:
+    name: "third"
     GridLayout:
         cols: 2
         Button:
@@ -83,8 +116,3 @@ WindowManager:
             text: "Press"
             on_release: root.btn()
 
-<Pop>:
-    Label:
-        text: "You pressed the button"
-        size_hint: 0.6, 0.2
-        pos_hint: {"x":0.2, "top":0.1}
