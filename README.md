@@ -6,6 +6,11 @@ Android  mobile app using Kivy.
 
 ![Drag Image](source/presentation.png)
 
+Collecting data :P
+
+![Drag Image](source/IMG-20190921-WA0017.jpg)
+
+
 ## [Unreleased]
 ### Added
 ### Changed
